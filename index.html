@@ -1,0 +1,142 @@
+<head>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+  <style>
+    .refresh_icon {
+      z-index: 1000;
+      position: absolute;
+      right: 20px;
+      height: 25%;
+    }
+    .twitter_icon {
+      z-index: 1000;
+      position: absolute;
+      left: 110px;
+      height: 10%;
+      bottom: 5px;
+    }
+    .tumblr_icon {
+      z-index: 1000;
+      position: absolute;
+      left: 40px;
+      height: 7%;
+      bottom: 15px;
+    }
+    .mail_icon {
+      z-index: 1000;
+      position: absolute;
+      left: 210px;
+      height: 6%;
+      bottom: 18px;
+    }
+  </style>
+  <script>
+    function getCookie(c_name)
+    {
+      var c_value = document.cookie;
+      var c_start = c_value.indexOf(" " + c_name + "=");
+      if (c_start == -1)
+      {
+        c_start = c_value.indexOf(c_name + "=");
+      }
+      if (c_start == -1)
+      {
+        c_value = null;
+      }
+      else
+      {
+        c_start = c_value.indexOf("=", c_start) + 1;
+        var c_end = c_value.indexOf(";", c_start);
+        if (c_end == -1)
+        {
+          c_end = c_value.length;
+        }
+        c_value = unescape(c_value.substring(c_start,c_end));
+      }
+      return c_value;
+    }
+
+    function setCookie(c_name,value,exdays)
+    {
+      var exdate=new Date();
+      exdate.setDate(exdate.getDate() + exdays);
+      var c_value=escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
+      document.cookie=c_name + "=" + c_value;
+    }
+
+    $(function() {
+      var videos = [
+        'https://dl.dropboxusercontent.com/u/233105575/refresh_assets/Bookstore_720.mov',
+        'https://dl.dropboxusercontent.com/u/233105575/refresh_assets/Stuff_to_think_HiVol.mp4',
+        'https://dl.dropboxusercontent.com/u/233105575/refresh_assets/Girls%20_wanna_have_fun_720.mov',
+        'https://dl.dropboxusercontent.com/u/233105575/refresh_assets/How_many_friends_HiVol.mp4',
+        'https://dl.dropboxusercontent.com/u/233105575/refresh_assets/Ice_Cream_HiVol.mp4',
+        'https://dl.dropboxusercontent.com/u/233105575/refresh_assets/Lily_morning_laptop_720.mp4',
+        'https://dl.dropboxusercontent.com/u/233105575/refresh_assets/Lily_Bathroom_720.mp4',
+        'https://dl.dropboxusercontent.com/u/233105575/refresh_assets/Lily_bed_scene_720.mp4',
+        'https://dl.dropboxusercontent.com/u/233105575/refresh_assets/Popular_HiVol.mp4',
+        'https://dl.dropboxusercontent.com/u/233105575/refresh_assets/Rooftop_selfie_720.mp4',
+        'https://dl.dropboxusercontent.com/u/233105575/refresh_assets/Special_HiVol.mp4',
+      ];
+      function getIndex() {
+        var latest = getCookie('refresh_latest');
+        var displayed = getCookie('refresh_displayed');
+        console.log('from cookie: ' + displayed);
+        if (displayed) {
+          displayed = JSON.parse(displayed);
+        } else {
+          displayed = [];
+        }
+        console.log(displayed);
+        if (displayed.length == videos.length) {
+          displayed = [];
+        }
+        var cur = Math.floor(Math.random() * videos.length)
+        console.log('latest: ' + latest + ', cur: ' + cur + ', displayed: ' + displayed);
+        if (latest == cur) {
+          return getIndex();
+        }
+        if (displayed.indexOf(String(cur)) >= 0) {
+          return getIndex();
+        }
+        if (latest == cur) {
+          return getIndex();
+        }
+        displayed.push(String(cur))
+        setCookie('refresh_latest', cur, 1000);
+        var toCookie = JSON.stringify( displayed )
+        console.log('setting cookie: ' + toCookie);
+        setCookie('refresh_displayed', toCookie, 1000);
+        return cur;
+      }
+      var curUrl = videos[getIndex()];
+      var videoUrl = '<embed id="videoplayer" type="application/x-shockwave-flash" src="https://dl.dropboxusercontent.com/u/32613729/refresh/Cargo_vcr.swf?vid=%s" style="position: fixed; top: 0px; left: 0px; bottom: 0px; right: 0px; width: 100%; height: 100%;" id="flashObject" name="flashObject" bgcolor="000000" menu="no" quality="high" wmode="opaque">'.replace('%s', curUrl);
+      $('#container').html(videoUrl);
+    });
+  </script>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-45786436-1', 'refreshthemovie.com');
+    ga('send', 'pageview');
+
+  </script>
+</head>
+<body>
+  <a onClick='window.location.reload();' href='#'>
+    <img class='refresh_icon' src="https://dl.dropboxusercontent.com/u/233105575/refresh_assets/refreshicon_v2_small.png"></img>
+  </a>
+  <a target="_blank" href='http://lilybananafish.tumblr.com/'>
+    <img class='tumblr_icon' src="https://dl.dropboxusercontent.com/u/233105575/refresh_assets/tumblr_small.png"></img>
+  </a>
+  <a target="_blank" href='https://twitter.com/lilybananafish/'>
+    <img class='twitter_icon' src="https://dl.dropboxusercontent.com/u/233105575/refresh_assets/twitter_small.jpg.png"></img>
+  </a>
+  <a target="_blank" href='mailto:refreshthemovie@gmail.com'>
+    <img class='mail_icon' src="https://dl.dropboxusercontent.com/u/233105575/refresh_assets/mail-refresh_small.png"></img>
+  </a>
+  <div id='container'>
+  </div>
+</body>
