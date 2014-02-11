@@ -126,20 +126,26 @@
         } else {
           displayed = [];
         }
-        console.log(displayed);
-        if (displayed.length == videos.length) {
+        if(window.location.hash) {
+          var cur = window.location.hash.replace('#', '');
+          console.log('hash: ' + cur);
           displayed = [];
-        }
-        var cur = Math.floor(Math.random() * videos.length)
-        console.log('latest: ' + latest + ', cur: ' + cur + ', displayed: ' + displayed);
-        if (latest == cur) {
-          return getIndex();
-        }
-        if (displayed.indexOf(String(cur)) >= 0) {
-          return getIndex();
-        }
-        if (latest == cur) {
-          return getIndex();
+        } else {
+          console.log(displayed);
+          if (displayed.length == videos.length) {
+            displayed = [];
+          }
+          var cur = Math.floor(Math.random() * videos.length)
+            console.log('latest: ' + latest + ', cur: ' + cur + ', displayed: ' + displayed);
+          if (latest == cur) {
+            return getIndex();
+          }
+          if (displayed.indexOf(String(cur)) >= 0) {
+            return getIndex();
+          }
+          if (latest == cur) {
+            return getIndex();
+          }
         }
         displayed.push(String(cur))
         setCookie('refresh_latest', cur, 1000);
