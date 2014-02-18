@@ -7,6 +7,7 @@
   <meta property="og:description" content="What's a girl to do to have a deep connection with a man? Sylvia wants to have a real relationship, but she's not quite sure how to. So she tries to surprise her lover. And she might surprise you too. Meet Sylvia." />
   <meta property="og:image" content="https://dl.dropboxusercontent.com/u/233105575/refresh_assets/lily_fb_share.png" />
   <meta property="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name = "viewport" content = "initial-scale=1.0, maximum-scale=1.0 /">
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
   <style>
     body{
@@ -20,15 +21,25 @@
       right: 20px;
       height: 200px;
     }
+    .refresh_mobile_icon {
+      z-index: 1000;
+      position: absolute;
+      right: 5px;
+      height: 100px;
+    }
     .social_container {
       position: absolute;
       bottom: 10px;
       right: 50px;
     }
+    .social_mobile_container {
+      position: absolute;
+      bottom: 10px;
+      right: 5px;
+    }
 
     .fb-share-button {
       z-index: 1000;
-      /*position: absolute;*/
       right: 20px;
       bottom: 4px;
     }
@@ -43,6 +54,13 @@
       height: 75px;
       bottom: 5px;
     }
+    .twitter_mobile_icon {
+      z-index: 1000;
+      position: absolute;
+      left: 40px;
+      height: 38px;
+      bottom: 3px;
+    }
     .tumblr_icon {
       z-index: 1000;
       position: absolute;
@@ -50,12 +68,26 @@
       height: 50px;
       bottom: 15px;
     }
+    .tumblr_mobile_icon {
+      z-index: 1000;
+      position: absolute;
+      left: 13px;
+      height: 25px;
+      bottom: 10px;
+    }
     .mail_icon {
       z-index: 1000;
       position: absolute;
       left: 210px;
       height: 40px;
       bottom: 20px;
+    }
+    .mail_mobile_icon {
+      z-index: 1000;
+      position: absolute;
+      left: 80px;
+      height: 20px;
+      bottom: 12px;
     }
 
 
@@ -170,9 +202,13 @@
 
         $("style").append(backgroundUrl);
 
-        videoUrl = ' <a href="%s"><img src="https://dl.dropboxusercontent.com/s/njuc04vxuokpn6q/playbuttonnoframe-black189x193.png" style="position: absolute; top: 50%; left: 50%; margin-left: -95px; margin-top: -97px;"></a> '.replace('%s', curUrl);
+        videoUrl = ' <a href="%s"><img src="https://dl.dropboxusercontent.com/s/njuc04vxuokpn6q/playbuttonnoframe-black189x193.png" style="position: absolute; height: 120px; top: 50%; left: 50%; margin-left: -59px; margin-top: -60px;"></a> '.replace('%s', curUrl);
 
-
+        $(".twitter_icon").removeClass("twitter_icon").addClass("twitter_mobile_icon");
+        $(".mail_icon").removeClass("mail_icon").addClass("mail_mobile_icon");
+        $(".tumblr_icon").removeClass("tumblr_icon").addClass("tumblr_mobile_icon");
+        $(".refresh_icon").removeClass("tumblr_icon").addClass("refresh_mobile_icon");
+        $(".social_container").removeClass("tumblr_icon").addClass("social_mobile_container");
 
       } else {
         videoUrl = '<embed id="videoplayer" type="application/x-shockwave-flash" src="https://dl.dropboxusercontent.com/u/32613729/refresh/Cargo_vcr.swf?vid=%s" style="position: fixed; top: 0px; left: 0px; bottom: 0px; right: 0px; width: 100%; height: 100%;" id="flashObject" name="flashObject" bgcolor="000000" menu="no" quality="high" wmode="opaque">'.replace('%s', curUrl);
