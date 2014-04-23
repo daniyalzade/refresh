@@ -119,6 +119,10 @@
       return c_value;
     }
 
+    function refresh() {
+      window.location.href = window.location.href.split('#')[0];
+    }
+
     function setCookie(c_name,value,exdays)
     {
       var exdate=new Date();
@@ -252,7 +256,7 @@
   js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-  <a onClick='window.location.reload();' href='#'>
+  <a onClick='refresh();' href='#'>
     <img class='refresh_icon' src="https://dl.dropboxusercontent.com/u/233105575/refresh_assets/refreshicon_v2_small.png"></img>
   </a>
   <a target="_blank" href='http://sylviamania.tumblr.com/'>
